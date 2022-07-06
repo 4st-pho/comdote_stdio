@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "934873983222",
+    "project_id": "flutter-week-6",
+    "storage_bucket": "flutter-week-6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934873983222:android:67497d3a2740fab6f864d7",
+        "android_client_info": {
+          "package_name": "com.u4st.app.stdio_week_6"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "934873983222-gdagrhd5cldnh4i9e55r03hib8886a71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlcKW2jc3PNPNC3TzxcvMJh_dsL3FVMP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934873983222-gdagrhd5cldnh4i9e55r03hib8886a71.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "934873983222-incr1dgkbbufktdm4h8r9s7vs7t3rp8p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.4st.app.stdioWeek6"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934873983222:android:a11fcc442aef76bcf864d7",
+        "android_client_info": {
+          "package_name": "com.u4st.flutterwweek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "934873983222-gdagrhd5cldnh4i9e55r03hib8886a71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlcKW2jc3PNPNC3TzxcvMJh_dsL3FVMP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934873983222-gdagrhd5cldnh4i9e55r03hib8886a71.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "934873983222-incr1dgkbbufktdm4h8r9s7vs7t3rp8p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.4st.app.stdioWeek6"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
