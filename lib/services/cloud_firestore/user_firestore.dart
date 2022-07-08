@@ -16,7 +16,7 @@ class UserFirestore {
     final user = model.User(
         id: uid,
         avatar:
-            'https://www.seekpng.com/png/full/356-3562377_personal-user.png',
+            'https://i.pinimg.com/236x/61/fd/3c/61fd3cdb461cf68f45f07d3b3acb1550.jpg',
         follow: [],
         name: 'user');
     await docUser.set(user.toJson());

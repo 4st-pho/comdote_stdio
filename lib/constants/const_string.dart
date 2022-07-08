@@ -28,6 +28,7 @@ class ConstString {
   static const addImage = 'Add image';
   static const explore = 'Explore ';
   static const newHotel = 'New Hotel';
+  static const signUp = 'Sign Up';
   static const noReview = ' (0 review)';
   static const sendInstructions = 'Send instructions';
   static const imageIsRequired = 'Image is required.';
@@ -51,5 +52,5 @@ class ConstString {
   static const requiredRate = 'Rate is required!';
   static const aliveWithYourStyleOfLiving = 'Alive with your style of living!';
   static const forgotPassword = 'Forgot password?';
-  static const youDoNotHaveAnAccount = 'You don\'t have an account?';
+  static const youDoNotHaveAnAccount = 'You don\'t have an account? ';
 }

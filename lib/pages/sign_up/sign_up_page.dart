@@ -5,7 +5,6 @@ import 'package:stdio_week_6/constants/const_string.dart';
 import 'package:stdio_week_6/constants/my_font.dart';
 import 'package:stdio_week_6/helper/build_password_text_form_field.dart';
 import 'package:stdio_week_6/helper/hide_keyboard.dart';
-import 'package:stdio_week_6/helper/show_snackbar.dart';
 import 'package:stdio_week_6/services/firebase_auth/firebase_auth_methods.dart';
 import 'package:stdio_week_6/widgets/button/custom_button.dart';
 import 'package:stdio_week_6/widgets/logo.dart';
@@ -70,7 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       builder: (context, snapshot) {
                         final isLoading = snapshot.data!;
                         return CustomButton(
-                          text: 'Sign up',
+                          text: ConstString.signUp,
                           onPressed: isLoading
                               ? null
                               : () async {
@@ -80,23 +79,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                     _loadingBloc.toggleState();
                                     return;
                                   }
-                                  FirebaseAuthMethods()
+                                  await FirebaseAuthMethods()
                                       .signUpWithEmailAndPassword(
                                           email: _emailController.text,
                                           password: _passwordController.text,
-                                          context: context)
-                                      .then(
-                                    (value) async {
-                                      if (value == 'success') {
-                                        showSnackBar(
-                                            context: context, content: value);
-                                      } else {
-                                        _loadingBloc.toggleState();
-                                      }
-                                      await Future.delayed(
-                                          const Duration(seconds: 2));
-                                    },
-                                  );
+                                          context: context);
+                                  _loadingBloc.toggleState();
                                 },
                         );
                       },

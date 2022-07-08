@@ -38,22 +38,24 @@ class FirebaseAuthMethods {
   Stream<User?> get authState => FirebaseAuth.instance.authStateChanges();
 
   //Sign up
-  Future<String> signUpWithEmailAndPassword({
+  Future signUpWithEmailAndPassword({
     required String email,
     required String password,
     required BuildContext context,
   }) async {
-    String message = 'success';
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email.trim(), password: password.trim());
       await UserFirestore()
           .createUser(uid: FirebaseAuth.instance.currentUser!.uid);
+      showSnackBar(
+          context: context, content: 'Sign up success!', title: 'Sign up');
+      await Future.delayed(const Duration(milliseconds: 500));
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pop();
     } on FirebaseAuthException catch (e) {
       showSnackBar(context: context, content: e.message!, error: true);
-      message = e.message!;
     }
-    return message;
   }
 
   // sign in
