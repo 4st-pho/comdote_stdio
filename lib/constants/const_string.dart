@@ -18,6 +18,8 @@ class ConstString {
   static const reviews = 'Reviews';
   static const content = 'Content';
   static const description = 'Description';
+  static const logOut = 'Log out';
+  static const changeImage = 'Change image';
   static const seeMore = 'See more';
   static const resetPassword = 'Reset password';
   static const readMore = 'read more';

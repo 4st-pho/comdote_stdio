@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:stdio_week_6/helper/debounce.dart';
 import 'package:stdio_week_6/models/hotel.dart';
-import 'package:stdio_week_6/pages/search_result_page.dart';
+import 'package:stdio_week_6/pages/search_result/search_result_page.dart';
 import 'package:stdio_week_6/services/cloud_firestore/hotel_firestore.dart';
 
 class SearchBloc {

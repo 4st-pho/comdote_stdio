@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stdio_week_6/blocs/hotel_card_bloc.dart';
 import 'package:stdio_week_6/constants/assets_image.dart';
 import 'package:stdio_week_6/constants/assets_icon.dart';
+import 'package:stdio_week_6/services/cloud_firestore/user_firestore.dart';
 
 class HotelcardImage extends StatefulWidget {
   final String imagePath;
@@ -17,11 +18,6 @@ class HotelcardImage extends StatefulWidget {
 
 class _HotelcardImageState extends State<HotelcardImage> {
   final _cardBloc = HotelCardBloc();
-  @override
-  void dispose() {
-    _cardBloc.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +34,7 @@ class _HotelcardImageState extends State<HotelcardImage> {
           ),
         ),
         StreamBuilder<List<String>>(
-            stream: _cardBloc.stream,
+            stream: UserFirestore().streamBookmark,
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return const Center(

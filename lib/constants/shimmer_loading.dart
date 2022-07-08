@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
-import 'package:stdio_week_6/widgets/bookmark_card_shimmer.dart';
-import 'package:stdio_week_6/widgets/discover_card_shimmer.dart';
-import 'package:stdio_week_6/widgets/hotel_card_shimmer.dart';
-import 'package:stdio_week_6/widgets/hotel_review_shimmer.dart';
+import 'package:stdio_week_6/widgets/shimmer/bookmark_card_shimmer.dart';
+import 'package:stdio_week_6/widgets/shimmer/discover_card_shimmer.dart';
+import 'package:stdio_week_6/widgets/shimmer/hotel_card_shimmer.dart';
+import 'package:stdio_week_6/widgets/shimmer/hotel_review_shimmer.dart';
 
 class ShimmerLoading {
   static final listHotelCard = ListView(
     padding: const EdgeInsets.all(16),
     children: const [
-      HotelCardShimmer(),
-      HotelCardShimmer(),
-      HotelCardShimmer(),
-      HotelCardShimmer(),
+      Padding(padding: EdgeInsets.only(bottom: 16), child: HotelCardShimmer()),
+      Padding(padding: EdgeInsets.only(bottom: 16), child: HotelCardShimmer()),
+      Padding(padding: EdgeInsets.only(bottom: 16), child: HotelCardShimmer()),
+      Padding(padding: EdgeInsets.only(bottom: 16), child: HotelCardShimmer()),
     ],
   );
   static final listBookmarkCard = ListView(

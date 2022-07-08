@@ -5,11 +5,11 @@ import 'package:stdio_week_6/constants/assets_icon.dart';
 import 'package:stdio_week_6/constants/const_string.dart';
 import 'package:stdio_week_6/constants/my_color.dart';
 import 'package:stdio_week_6/models/user.dart';
-import 'package:stdio_week_6/pages/bookmark_page.dart';
-import 'package:stdio_week_6/pages/discover_page.dart';
-import 'package:stdio_week_6/pages/home_page.dart';
-import 'package:stdio_week_6/pages/offline_page.dart';
-import 'package:stdio_week_6/pages/profile_page.dart';
+import 'package:stdio_week_6/pages/bookmark/bookmark_page.dart';
+import 'package:stdio_week_6/pages/discover/discover_page.dart';
+import 'package:stdio_week_6/pages/home/home_page.dart';
+import 'package:stdio_week_6/pages/offline/offline_page.dart';
+import 'package:stdio_week_6/pages/profile/profile_page.dart';
 import 'package:stdio_week_6/services/network/network_service.dart';
 
 class MainPage extends StatefulWidget {
