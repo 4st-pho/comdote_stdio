@@ -3,6 +3,7 @@ import 'package:stdio_week_6/blocs/hotel_card_bloc.dart';
 import 'package:stdio_week_6/constants/assets_icon.dart';
 import 'package:stdio_week_6/models/hotel.dart';
 import 'package:stdio_week_6/pages/map/map_page.dart';
+import 'package:stdio_week_6/services/cloud_firestore/user_firestore.dart';
 import 'package:stdio_week_6/widgets/button/image_button.dart';
 
 class DetailHotelBar extends StatefulWidget {
@@ -15,12 +16,6 @@ class DetailHotelBar extends StatefulWidget {
 
 class _DetailHotelBarState extends State<DetailHotelBar> {
   final _hotelCardBloc = HotelCardBloc();
-
-  @override
-  void dispose() {
-    super.dispose();
-    _hotelCardBloc.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +42,7 @@ class _DetailHotelBarState extends State<DetailHotelBar> {
             _hotelCardBloc.toggleSave(widget.hotel.id);
           },
           child: StreamBuilder<List<String>>(
-              stream: _hotelCardBloc.stream,
+              stream: UserFirestore().streamBookmark,
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return const SizedBox();

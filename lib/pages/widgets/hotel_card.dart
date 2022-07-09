@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stdio_week_6/blocs/hotel_card_bloc.dart';
 import 'package:stdio_week_6/models/hotel.dart';
 import 'package:stdio_week_6/pages/hotel_detail/hotel_detail_page.dart';
 import 'package:stdio_week_6/pages/widgets/hotel_card_image.dart';
@@ -15,13 +14,6 @@ class HotelCard extends StatefulWidget {
 }
 
 class _HotelCardState extends State<HotelCard> {
-  final _cardBloc = HotelCardBloc();
-  @override
-  void dispose() {
-    _cardBloc.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
