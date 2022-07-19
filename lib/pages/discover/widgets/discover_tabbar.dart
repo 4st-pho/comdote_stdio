@@ -41,22 +41,26 @@ class _DiscoveTabbarState extends State<DiscoveTabbar> {
             ),
             const SizedBox(height: 32),
             Flexible(
-                child: SizedBox(
-              height: 300,
-              child: StreamBuilder<List<Hotel>>(
+              child: SizedBox(
+                height: 300,
+                child: StreamBuilder<List<Hotel>>(
                   stream: _discoverPageBloc.stream,
                   initialData: const [],
                   builder: (context, snapshot) {
                     final hotels = snapshot.data!;
-                    return TabBarView(children: [
-                      DiscoverTrending(
-                        hotels: hotels,
-                      ),
-                      DiscoverPopular(hotels: hotels),
-                      DiscoverHightRated(hotels: hotels),
-                    ]);
-                  }),
-            ))
+                    return TabBarView(
+                      children: [
+                        DiscoverTrending(
+                          hotels: hotels,
+                        ),
+                        DiscoverPopular(hotels: hotels),
+                        DiscoverHightRated(hotels: hotels),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),

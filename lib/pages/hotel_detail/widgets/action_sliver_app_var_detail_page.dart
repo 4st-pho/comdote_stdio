@@ -4,29 +4,22 @@ import 'package:stdio_week_6/constants/assets_icon.dart';
 import 'package:stdio_week_6/models/hotel.dart';
 import 'package:stdio_week_6/pages/map/map_page.dart';
 import 'package:stdio_week_6/services/cloud_firestore/user_firestore.dart';
-import 'package:stdio_week_6/widgets/button/image_button.dart';
 
-class DetailHotelBar extends StatefulWidget {
-  const DetailHotelBar({Key? key, required this.hotel}) : super(key: key);
+class ActionSliverAppBarDetailPage extends StatefulWidget {
+  const ActionSliverAppBarDetailPage({Key? key, required this.hotel}) : super(key: key);
   final Hotel hotel;
 
   @override
-  State<DetailHotelBar> createState() => _DetailHotelBarState();
+  State<ActionSliverAppBarDetailPage> createState() => _ActionSliverAppBarDetailPageState();
 }
 
-class _DetailHotelBarState extends State<DetailHotelBar> {
+class _ActionSliverAppBarDetailPageState extends State<ActionSliverAppBarDetailPage> {
   final _hotelCardBloc = HotelCardBloc();
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        ImageButton(
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-          assetsIcon: AssetsIcon.back,
-        ),
         const Spacer(),
         InkWell(
           onTap: () {
@@ -34,24 +27,30 @@ class _DetailHotelBarState extends State<DetailHotelBar> {
                 builder: (context) =>
                     MapPage(location: widget.hotel.location)));
           },
-          child: Image.asset(AssetsIcon.export, height: 24),
+          child: Padding(
+            padding: const EdgeInsets.all(6),
+            child: Image.asset(AssetsIcon.export, height: 24),
+          ),
         ),
-        const SizedBox(width: 13),
         InkWell(
           onTap: () {
             _hotelCardBloc.toggleSave(widget.hotel.id);
           },
           child: StreamBuilder<List<String>>(
-              stream: UserFirestore().streamBookmark,
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return const SizedBox();
-                }
-                final data = snapshot.data!;
-                return data.contains(widget.hotel.id)
+            stream: UserFirestore().streamBookmark,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const SizedBox();
+              }
+              final data = snapshot.data!;
+              return Padding(
+                padding: const EdgeInsets.all(6),
+                child: data.contains(widget.hotel.id)
                     ? Image.asset(AssetsIcon.saveActive, height: 24)
-                    : Image.asset(AssetsIcon.save, height: 24);
-              }),
+                    : Image.asset(AssetsIcon.save, height: 24),
+              );
+            },
+          ),
         ),
       ],
     );

@@ -6,7 +6,6 @@ import 'package:stdio_week_6/widgets/shimmer/hotel_review_shimmer.dart';
 
 class ShimmerLoading {
   static final listHotelCard = ListView(
-    padding: const EdgeInsets.all(16),
     children: const [
       Padding(padding: EdgeInsets.only(bottom: 16), child: HotelCardShimmer()),
       Padding(padding: EdgeInsets.only(bottom: 16), child: HotelCardShimmer()),

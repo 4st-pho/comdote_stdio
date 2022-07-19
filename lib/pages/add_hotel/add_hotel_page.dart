@@ -7,7 +7,7 @@ import 'package:stdio_week_6/constants/assets_icon.dart';
 import 'package:stdio_week_6/constants/collection_path.dart';
 import 'package:stdio_week_6/constants/const_string.dart';
 import 'package:stdio_week_6/constants/my_font.dart';
-import 'package:stdio_week_6/helper/build_text_form_field.dart';
+import 'package:stdio_week_6/widgets/build_text_form_field.dart';
 import 'package:stdio_week_6/helper/hide_keyboard.dart';
 import 'package:stdio_week_6/helper/show_snackbar.dart';
 import 'package:stdio_week_6/pages/add_hotel/widgets/dotted_image.dart';
@@ -83,13 +83,17 @@ class _AddHotelPageState extends State<AddHotelPage> {
                     Flexible(
                       flex: 4,
                       child: CustomOutlineButton(
-                          text: ConstString.cancel,
-                          onPress: () {
-                            Navigator.of(context).pop();
-                          }),
+                        text: ConstString.cancel,
+                        onPress: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
                     ),
                     const Flexible(
-                        flex: 1, fit: FlexFit.tight, child: SizedBox()),
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: SizedBox(),
+                    ),
                     StreamBuilder<bool>(
                       stream: _loadingBloc.stream,
                       builder: (context, snapshot) {
@@ -207,11 +211,13 @@ class _AddHotelPageState extends State<AddHotelPage> {
           const SizedBox(height: 10),
           BuildTextFormFeild(
               controller: nameController,
+              isFocusNext: true,
               subtitle: 'Do not exceed 40 characters when entering.',
               title: 'Hotel name',
               type: TextInputType.text),
           const SizedBox(height: 10),
           BuildTextFormFeild(
+              isFocusNext: true,
               controller: addressController,
               title: 'Address',
               type: TextInputType.text),

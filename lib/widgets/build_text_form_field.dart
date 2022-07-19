@@ -9,22 +9,24 @@ class BuildTextFormFeild extends StatelessWidget {
   final TextInputType type;
   final bool showLabel;
   final double spaceBetweenLabelAndTextfeild;
-  const BuildTextFormFeild(
-      {required this.controller,
-      this.subtitle = '',
-      required this.title,
-      required this.type,
-      this.showLabel = true,
-      this.spaceBetweenLabelAndTextfeild = 8,
-      Key? key})
-      : super(key: key);
+  final bool isFocusNext;
+  const BuildTextFormFeild({
+    required this.controller,
+    this.subtitle = '',
+    required this.title,
+    required this.type,
+    this.showLabel = true,
+    this.spaceBetweenLabelAndTextfeild = 8,
+    this.isFocusNext = false,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        showLabel ? Text(title, style: MyFont.blackTitle) : const SizedBox(),
+        if (showLabel) Text(title, style: MyFont.blackTitle),
         SizedBox(height: spaceBetweenLabelAndTextfeild),
         TextFormField(
           style: const TextStyle(fontSize: 14, height: 1.47),
@@ -32,6 +34,8 @@ class BuildTextFormFeild extends StatelessWidget {
           maxLines: type == TextInputType.multiline ? 10 : 1,
           controller: controller,
           keyboardType: type,
+          textInputAction:
+              isFocusNext ? TextInputAction.next : TextInputAction.none,
           decoration: InputDecoration(
             isDense: true,
             border: MyDecoration.outlineInputBorder,

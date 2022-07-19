@@ -54,10 +54,11 @@ class _HomePageState extends State<HomePage> {
           List<Hotel> listHotel = snapshot.data!;
           if (listHotel.isEmpty) {
             return Center(
-                child: Image.asset(
-              AssetsImage.emptyList,
-              fit: BoxFit.contain,
-            ));
+              child: Image.asset(
+                AssetsImage.emptyList,
+                fit: BoxFit.contain,
+              ),
+            );
           }
           return RefreshIndicator(
             onRefresh: () async => _homePageBloc.init(),

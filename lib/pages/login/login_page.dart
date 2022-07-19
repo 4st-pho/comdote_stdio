@@ -4,8 +4,8 @@ import 'package:stdio_week_6/blocs/loading_bloc.dart';
 import 'package:stdio_week_6/constants/const_string.dart';
 import 'package:stdio_week_6/constants/my_font.dart';
 import 'package:stdio_week_6/helper/animation/custom_page_transition.dart';
-import 'package:stdio_week_6/helper/build_password_text_form_field.dart';
-import 'package:stdio_week_6/helper/build_text_form_field.dart';
+import 'package:stdio_week_6/widgets/build_password_text_form_field.dart';
+import 'package:stdio_week_6/widgets/build_text_form_field.dart';
 import 'package:stdio_week_6/helper/hide_keyboard.dart';
 import 'package:stdio_week_6/pages/sign_up/sign_up_page.dart';
 import 'package:stdio_week_6/pages/reset_password/reset_password_page.dart';
@@ -55,38 +55,42 @@ class _LoginPageState extends State<LoginPage> {
               _buildHeaderContent(),
               const SizedBox(height: 28),
               Padding(
-                  padding: const EdgeInsets.all(32),
-                  child: Column(children: [
+                padding: const EdgeInsets.all(32),
+                child: Column(
+                  children: [
                     _buildForm(),
                     const SizedBox(height: 40),
                     StreamBuilder<bool>(
-                        stream: _loadingBloc.stream,
-                        initialData: false,
-                        builder: (context, snapshot) {
-                          final isLoading = snapshot.data!;
-                          return CustomButton(
-                            text: ConstString.login,
-                            onPressed: isLoading
-                                ? null
-                                : () async {
-                                    hideKeyboard(context: context);
+                      stream: _loadingBloc.stream,
+                      initialData: false,
+                      builder: (context, snapshot) {
+                        final isLoading = snapshot.data!;
+                        return CustomButton(
+                          text: ConstString.login,
+                          onPressed: isLoading
+                              ? null
+                              : () async {
+                                  hideKeyboard(context: context);
+                                  _loadingBloc.toggleState();
+                                  if (!_formKey.currentState!.validate()) {
                                     _loadingBloc.toggleState();
-                                    if (!_formKey.currentState!.validate()) {
-                                      _loadingBloc.toggleState();
-                                      return;
-                                    }
-                                    FirebaseAuthMethods()
-                                        .signinWithEmailAndPassword(
-                                            email: _emailController.text,
-                                            password: _passwordController.text,
-                                            context: context);
-                                    await Future.delayed(
-                                        const Duration(seconds: 2));
-                                    _loadingBloc.toggleState();
-                                  },
-                          );
-                        })
-                  ])),
+                                    return;
+                                  }
+                                  FirebaseAuthMethods()
+                                      .signinWithEmailAndPassword(
+                                          email: _emailController.text,
+                                          password: _passwordController.text,
+                                          context: context);
+                                  await Future.delayed(
+                                      const Duration(seconds: 2));
+                                  _loadingBloc.toggleState();
+                                },
+                        );
+                      },
+                    )
+                  ],
+                ),
+              ),
               const SizedBox(height: 8),
               _getForgotPassword(context),
               const SizedBox(height: 40),
@@ -152,23 +156,26 @@ class _LoginPageState extends State<LoginPage> {
       child: Column(
         children: [
           BuildTextFormFeild(
-              controller: _emailController,
-              title: ConstString.email,
-              type: TextInputType.emailAddress,
-              showLabel: false),
+            controller: _emailController,
+            title: ConstString.email,
+            type: TextInputType.emailAddress,
+            showLabel: false,
+            isFocusNext: true,
+          ),
           const SizedBox(height: 16),
           BuildPasswordTextFormField(
-              controller: _passwordController,
-              title: ConstString.password,
-              onValidate: (value) {
-                if (value == null || value.isEmpty) {
-                  return ConstString.pleaseEnterSomeText;
-                }
-                if (value.length <= 7) {
-                  return ConstString.passwordMustBeMoreThan7Characters;
-                }
-                return null;
-              }),
+            controller: _passwordController,
+            title: ConstString.password,
+            onValidate: (value) {
+              if (value == null || value.isEmpty) {
+                return ConstString.pleaseEnterSomeText;
+              }
+              if (value.length <= 7) {
+                return ConstString.passwordMustBeMoreThan7Characters;
+              }
+              return null;
+            },
+          ),
         ],
       ),
     );

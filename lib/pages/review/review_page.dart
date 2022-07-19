@@ -45,44 +45,46 @@ class _ReviewPageState extends State<ReviewPage> {
               initialData: -1,
               builder: (context, snapshot) {
                 final rating = snapshot.data!;
-                
+
                 return StreamBuilder<List<Review>>(
-                    initialData: const [],
-                    stream: HotelFirestore().streamReviews(widget.hotelId),
-                    builder: (context, snapshot) {
-                      final reviews = snapshot.data;
-                      _reviewPageBloc.init(reviews ?? [], rating);
-                      return SafeArea(
-                        child: Column(
-                          children: [
-                            Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 16),
-                                child: _buildReviewPageBar(
-                                    context, reviews!.length)),
-                            SizedBox(
-                              height: 80,
-                              child: _buildSelectFilterRating(rating),
+                  initialData: const [],
+                  stream: HotelFirestore().streamReviews(widget.hotelId),
+                  builder: (context, snapshot) {
+                    final reviews = snapshot.data;
+                    _reviewPageBloc.init(reviews ?? [], rating);
+                    return SafeArea(
+                      child: Column(
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 16),
+                              child: _buildReviewPageBar(
+                                  context, reviews!.length)),
+                          SizedBox(
+                            height: 80,
+                            child: _buildSelectFilterRating(rating),
+                          ),
+                          Expanded(
+                            child: StreamBuilder(
+                              stream: _reviewPageBloc.stream,
+                              initialData: reviews,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot snapshot) {
+                                final data = snapshot.data!;
+                                return FilterReview(
+                                  reviews: data,
+                                  hotelId: widget.hotelId,
+                                );
+                              },
                             ),
-                            Expanded(
-                              child: StreamBuilder(
-                                stream: _reviewPageBloc.stream,
-                                initialData: reviews,
-                                builder: (BuildContext context,
-                                    AsyncSnapshot snapshot) {
-                                  final data = snapshot.data!;
-                                  return FilterReview(
-                                    reviews: data,
-                                    hotelId: widget.hotelId,
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    });
-              }),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
     );
   }
 

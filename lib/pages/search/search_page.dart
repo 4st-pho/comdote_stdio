@@ -17,13 +17,11 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   late final TextEditingController controller;
-  final FocusNode _textFocusNode = FocusNode();
   final _searchBloc = SearchBloc();
 
   @override
   void initState() {
     controller = TextEditingController();
-    _textFocusNode.requestFocus();
     super.initState();
   }
 
@@ -32,7 +30,6 @@ class _SearchPageState extends State<SearchPage> {
     super.dispose();
     controller.dispose();
     _searchBloc.dispose();
-    _textFocusNode.dispose();
   }
 
   @override
@@ -93,7 +90,6 @@ class _SearchPageState extends State<SearchPage> {
                 borderRadius: BorderRadius.circular(32),
                 child: SearchTextField(
                     controller: controller,
-                    textFocusNode: _textFocusNode,
                     searchBloc: _searchBloc),
               ),
             ),
